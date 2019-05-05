@@ -1,32 +1,19 @@
 var matrix = [];
-var side = 10;
-var n = 80;
-var m = 80;
+var side = 15;
+var altitude = 30;
+var latitude = 30;
 function setup() {
-    for (var y = 0; y < n; y++) {
+    for (var y = 0; y < altitude; y++) {
         matrix[y] = [];
-        for (var x = 0; x < m; x++) {
-            matrix[y][x] = random([1,1,3,1,4,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2]);
+        for (var x = 0; x < latitude; x++) {
+            matrix[y][x] = random([1, 1, 3, 1, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2]);
         }
     }
-
-    // matrix = [
-    //     [0, 0, 1, 3, 0],
-    //     [1, 0, 0, 0, 0],
-    //     [0, 1, 2, 0, 0],
-    //     [0, 0, 1, 0, 0],
-    //     [1, 1, 0, 0, 0],
-    //     [1, 1, 0, 0, 0],
-    //     [1, 1, 0, 0, 0]
-    // ];
-    
-
 
     matrix[Math.floor(Math.random() * matrix.length)][Math.floor(Math.random() * matrix[0].length)] = 5;
     frameRate(20);
     createCanvas(matrix[0].length * side, matrix.length * side);
 
-    
     for (var y = 0; y < matrix.length; y++) {
         for (var x = 0; x < matrix[y].length; x++) {
 
@@ -39,13 +26,11 @@ function setup() {
             else if (matrix[y][x] == 3) {
                 matrix[y][x] = new Predator(x, y, 3);
             }
-            else if (matrix[y][x] == 4) 
-            {
-                matrix[y][x] = new Bomb(x, y, 4);   
+            else if (matrix[y][x] == 4) {
+                matrix[y][x] = new Bomb(x, y, 4);
             }
-            else if (matrix[y][x] == 5) 
-            {
-                matrix[y][x] = new People(x, y, 5);   
+            else if (matrix[y][x] == 5) {
+                matrix[y][x] = new People(x, y, 5);
             }
         }
     }
@@ -65,10 +50,10 @@ function draw() {
                 matrix[y][x].eat();
             }
             else if (matrix[y][x].index == 4) {
-                matrix[y][x].boom(); 
+                matrix[y][x].boom();
             }
             else if (matrix[y][x].index == 5) {
-                matrix[y][x].move(); 
+                matrix[y][x].move();
             }
         }
     }
